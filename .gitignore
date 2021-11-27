@@ -1,0 +1,7 @@
+.idea
+db.sqlite3
+.env
+__pycache__/
+staticfiles
+fixtures.json
+tmp/
