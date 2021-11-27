@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import json
 import datetime
+from django.views.generic import ListView
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
 
@@ -27,6 +28,13 @@ def cart(request):
 
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/cart.html', context)
+
+class ProductList(ListView):
+    model = Product
+
+def productdetail(request,id):
+    product = Product.objects.get(id = id)
+    return render(request, 'store/detail.html', {'product': product})
 
 
 def checkout(request):
