@@ -27,6 +27,7 @@ urlpatterns = [
     path('process_order/', views.processOrder, name="process_order"),
     path('detail/', ProductList.as_view()),
     path('detail/<int:pk>/', productdetail, name='productdetail'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

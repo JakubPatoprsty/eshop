@@ -4,6 +4,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class BaseModel(models.Model):
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+    )
+    modified = models.DateTimeField(
+        auto_now=True,
+        editable=False,
+    )
+
+    class Meta:
+        abstract = True
+
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
@@ -86,3 +99,12 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return self.address
+
+
+class Person(BaseModel):
+    name = models.CharField(max_length=512)
+    age = models.IntegerField()
+    description = models.TextField()
+
+    class Meta:
+        abstract = True

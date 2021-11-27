@@ -40,7 +40,7 @@
 
 		        /* Removing whitespace at the beginning of the cookie name
 		        and compare it with the given string */
-		        if(name == cookiePair[0].trim()) {
+		        if(name === cookiePair[0].trim()) {
 		            // Decode the cookie value and return
 		            return decodeURIComponent(cookiePair[1]);
 		        }
@@ -51,7 +51,7 @@
 		}
 		var cart = JSON.parse(getCookie('cart'))
 
-		if (cart == undefined){
+		if (cart === undefined){
 			cart = {}
 			console.log('Cart Created!', cart)
 			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
@@ -65,7 +65,8 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 
@@ -77,6 +78,10 @@
 
 	    </ul>
 	    <div class="form-inline my-2 my-lg-0">
+            <a href="{% url 'register' %}" class="btn btn-warning">Register</a>
+            <br>
+            <a href="{% url 'login' %}" class="btn btn-warning">Login</a>
+
 	     	<a href="{% url 'cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
 	    	</a>
