@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 from store import views
 from store.views import RegistrationView
-from store.views import ProductList, productdetail
+from store.views import ProductList
 urlpatterns = [
     path('', views.store, name="store"),
     path('cart/', views.cart, name="cart"),
