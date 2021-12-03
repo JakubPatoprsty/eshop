@@ -21,8 +21,7 @@ def store(request):
     data = cartData(request)
 
     cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
+
 
     products = Product.objects.all()
     context = {'products': products, 'cartItems': cartItems}
@@ -124,12 +123,6 @@ def processOrder(request):
 # Class based views #
 #####################
 
-
-def get(request, *args, **kwargs):
-    logout(request)
-    return redirect('homepage')
-
-
 class LogoutView(View):
     """
     NOTE: Django has built it LogoutView (from django.contrib.auth.views import LogoutView)
@@ -137,7 +130,9 @@ class LogoutView(View):
 
     In our case we will have LogoutView in the base template. So we implement it ourselves.
     """
-
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('store')
 
 def post(request, *args, **kwargs):
     username = request.POST.get('username')
@@ -146,7 +141,7 @@ def post(request, *args, **kwargs):
     if user:
         login(request, user)
         messages.success(request, 'Log in successfully')
-        return redirect('homepage')
+        return redirect('store')
 
     messages.error(request, 'Wrong credentials')
     return redirect('login')
@@ -161,6 +156,12 @@ class LoginView(FormMixin, TemplateView):
     template_name = 'registration/login.html'
     form_class = AuthenticationForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        data = cartData(self.request)
+        cartItems = data['cartItems']
+        context['cartItems'] = cartItems
+        return context
 
 class RegistrationView(FormMixin, TemplateView):
     template_name = 'accounts/registration.html'
@@ -177,55 +178,53 @@ class RegistrationView(FormMixin, TemplateView):
             messages.error(request, f'Something wrongs')
             return TemplateResponse(request, 'accounts/registration.html', context={'form': form})
 
-
-
-########################
-# Function based views #
-########################
-
-
-def logout_view(request):
-    logout(request)
-
-
-def login_view(request):
-    if request.method == 'GET':
-        context = {
-            'form': AuthenticationForm(),
-        }
-        return TemplateResponse(request, 'registration/login.html', context=context)
-
-    elif request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user:
-            login(request, user)
-            messages.success(request, 'Log in successfully')
-            return redirect('homepage')
-
-        messages.error(request, 'Wrong credentials')
-        return redirect('auth:login')
-
-
-def registration_view(request):
-    data = cartData(request)
-
-    cartItems = data['cartItems']
-
-    if request.method == 'GET':
-        context = {
-            'form': RegistrationForm(), 'cartItems': cartItems
-        }
-        return TemplateResponse(request, 'accounts/registration.html', context=context)
-
-    elif request.method == 'POST':
-        registration_data = request.POST
-        form = RegistrationForm(registration_data)
-        if form.is_valid():
-            form.save()
-            messages.success(request, f'Account {form.cleaned_data.get("username")} successfully created')
-            return redirect('login')
-        else:
-            messages.error(request, f'Something wrongs')
-            return TemplateResponse(request, 'accounts/registration.html', context={'form': form})
+# #######################
+# # Function based views #
+# ########################
+#
+#
+# def logout_view(request):
+#     logout(request)
+#
+#
+# def login_view(request):
+#     if request.method == 'GET':
+#         context = {
+#             'form': AuthenticationForm(),
+#         }
+#         return TemplateResponse(request, 'registration/login.html', context=context)
+#
+#     elif request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         user = authenticate(request, username=username, password=password)
+#         if user:
+#             login(request, user)
+#             messages.success(request, 'Log in successfully')
+#             return redirect('homepage')
+#
+#         messages.error(request, 'Wrong credentials')
+#         return redirect('auth:login')
+#
+#
+# def registration_view(request):
+#     data = cartData(request)
+#
+#     cartItems = data['cartItems']
+#
+#     if request.method == 'GET':
+#         context = {
+#             'form': RegistrationForm(), 'cartItems': cartItems
+#         }
+#         return TemplateResponse(request, 'accounts/registration.html', context=context)
+#
+#     elif request.method == 'POST':
+#         registration_data = request.POST
+#         form = RegistrationForm(registration_data)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, f'Account {form.cleaned_data.get("username")} successfully created')
+#             return redirect('login')
+#         else:
+#             messages.error(request, f'Something wrongs')
+#             return TemplateResponse(request, 'accounts/registration.html', context={'form': form})
