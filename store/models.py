@@ -25,6 +25,13 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500, default="bez popisu")
+
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -32,6 +39,7 @@ class Product(models.Model):
     digital = models.BooleanField(default=False, null=True, blank=True)
     Description = models.CharField(max_length=500, default="bez popisu")
     image = models.ImageField(null=True, blank=True)
+    category = models.ManyToManyField(Category, related_name='products')
 
     def __str__(self):
         return self.name
@@ -108,3 +116,11 @@ class Person(BaseModel):
 
     class Meta:
         abstract = True
+
+
+
+
+    
+    
+    
+    

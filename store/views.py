@@ -22,9 +22,9 @@ def store(request):
 
     cartItems = data['cartItems']
 
-
+    categorys = Category.objects.all()
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
+    context = {'products': products, 'cartItems': cartItems, 'categorys': categorys}
     return render(request, 'store/store.html', context)
 
 def home(request):
@@ -32,8 +32,9 @@ def home(request):
 
     cartItems = data['cartItems']
 
+    categorys = Category.objects.all()
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
+    context = {'products': products, 'cartItems': cartItems, 'categorys': categorys}
     return render(request, 'store/home.html', context)
 
 def cart(request):
@@ -43,9 +44,20 @@ def cart(request):
     order = data['order']
     items = data['items']
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
+    categorys = Category.objects.all()
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'categorys': categorys}
     return render(request, 'store/cart.html', context)
 
+
+def category(request, pk):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+
+    categorys = Category.objects.all()
+    products = Product.objects.filter(category__pk=pk)
+    context = {'products': products, 'cartItems': cartItems, 'categorys': categorys}
+    return render(request, 'store/category.html', context)
 
 class ProductList(ListView):
     model = Product
@@ -54,21 +66,23 @@ class ProductList(ListView):
 def productdetail(request, pk):
     data = cartData(request)
 
+    categorys = Category.objects.all()
     product = Product.objects.get(pk=pk)
     cartItems = data['cartItems']
 
-    context = {'product': product, 'cartItems': cartItems}
+    context = {'product': product, 'cartItems': cartItems, 'categorys': categorys}
     return render(request, 'store/product.html', context)
 
 
 def checkout(request):
     data = cartData(request)
 
+    categorys = Category.objects.all()
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'categorys': categorys}
     return render(request, 'store/checkout.html', context)
 
 

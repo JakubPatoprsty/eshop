@@ -92,13 +92,24 @@
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
 	      </li>
+		  	<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% for category in categorys %}
+            <a class="dropdown-item" href="{% url 'category' category.pk %}">{{ category.name }}</a>
+            {% endfor %}
+            <a class="dropdown-item" href="{% url 'store' %}">Vše</a>
 
+        </div>
+      </li>
 	    </ul>
 	    <div class="form-inline my-2 my-lg-0">
             {% if request.user.is_authenticated %}
-                <h6>Username: {{ request.user.username }}</h6>
+                <a class="btn btn-warning">Username: {{ request.user.username }}</a>
             {% endif %}
-
+<p>   &nbsp; &nbsp; &nbsp;</p>
             {% if request.user.is_anonymous %}
             <a href="{% url 'register' %}" class="btn btn-warning">Register</a>
             <a href="{% url 'login' %}" class="btn btn-warning">Login</a>
@@ -118,7 +129,7 @@
 	</nav>
 
 
-     <div class="container">
+     <div class="container" >
             <br>
             {% block content %}
 
@@ -134,7 +145,7 @@
   >
 
     <div>
-      <a href="" class="me-4 text-reset">
+     <!-- <a href="" class="me-4 text-reset">
         <i class="fab fa-facebook-f"></i>
       </a>
       <a href="" class="me-4 text-reset">
@@ -148,8 +159,8 @@
       </a>
       <a href="" class="me-4 text-reset">
         <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
+      </a> -->
+      <a href="https://github.com/JakubPatoprsty/eshop" class="me-4 text-reset">
         <i class="fab fa-github"></i>
       </a>
     </div>
@@ -166,7 +177,7 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <!--<i class="fas fa-gem me-3">--></i>Company name
           </h6>
           <p>
             AutodílyCZ a.s.<br>
@@ -241,7 +252,7 @@
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Jakub a Pavel</a>
+    <a class="text-reset fw-bold" href="https://github.com/JakubPatoprsty/eshop">Jakub a Pavel</a>
   </div>
   <!-- Copyright -->
 </footer>

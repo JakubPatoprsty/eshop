@@ -188,3 +188,13 @@ color: white;
 .sidebar {position: absolute; right: 0; top: 100px}
 .sidebar div {background: #0D6AB7; text-align: center; width: 120px; height: 600px; }
 .sidebar .fixed {position: fixed; right: 0; top: 0}
+
+
+.teste {
+    background-color: red;
+    width: 100px;
+    height: 50px;
+    margin-top: 140px; /* altura que está do topo */
+    top: 50px; /* altura que vai parar antes do topo */
+    position: sticky;
+}
