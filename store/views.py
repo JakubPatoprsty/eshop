@@ -27,6 +27,14 @@ def store(request):
     context = {'products': products, 'cartItems': cartItems}
     return render(request, 'store/store.html', context)
 
+def home(request):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+
+    products = Product.objects.all()
+    context = {'products': products, 'cartItems': cartItems}
+    return render(request, 'store/home.html', context)
 
 def cart(request):
     data = cartData(request)

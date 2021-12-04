@@ -59,12 +59,29 @@
 		console.log('Cart:', cart)
 
 	</script>
+<style>
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block; /* remove extra space below image */
+    }
+    .box{
+        max-width: 100%;
+        max-height: 100%;
 
+    }
+    .box.large{
+        height: 300px;
+    }
+    .box.small{
+        height: 100px;
+    }
+</style>
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
+	  <a class="navbar-brand" href="{% url 'home' %}">Home</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -97,7 +114,9 @@
 
 	    </div>
 	  </div>
+
 	</nav>
+
 
      <div class="container">
             <br>
@@ -107,7 +126,126 @@
             {% endblock content %}
          </div>
 
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+  <!-- Section: Social media -->
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
 
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Company name
+          </h6>
+          <p>
+            AutodílyCZ a.s.<br>
+			  Nejkvalitnější díly pro vaše auto
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Použité technologie
+          </h6>
+          <p>
+            <a href="https://www.djangoproject.com/" class="text-reset">Django</a>
+          </p>
+          <p>
+            <a href="https://www.w3schools.com/html/" class="text-reset">HTML 5</a>
+          </p>
+          <p>
+            <a href="https://www.w3schools.com/css/" class="text-reset">CSS</a>
+          </p>
+          <p>
+            <a href="https://www.javascript.com/" class="text-reset">JavaScript</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Odkazy
+          </h6>
+          <p>
+            <a href="https://sdacademy.cz/" class="text-reset">SDA Academy</a>
+          </p>
+          <p>
+            <a href="https://www.youtube.com/channel/UChfHPD-cztBLoI-DJyRoSDQ" class="text-reset">Informatika s Mišom</a>
+          </p>
+          <p>
+            <a href="https://youtube.com/playlist?list=PL9n3wo1YKCEge8OeAweKqzeqXA6fSaSXq" class="text-reset">Python 3 Tutorials</a>
+          </p>
+          <p>
+            <a href="https://youtube.com/playlist?list=PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3" class="text-reset">Python Tutorial Eng</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> Brno a Ostrava, CZ</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 420 123 456 789</p>
+          <p><i class="fas fa-print me-3"></i> + 420 987 654 321</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Jakub a Pavel</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
