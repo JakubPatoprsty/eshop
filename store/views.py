@@ -54,9 +54,9 @@ def category(request, pk):
 
     cartItems = data['cartItems']
 
+    category = Category.objects.get(pk=pk)
     categorys = Category.objects.all()
-    products = Product.objects.filter(category__pk=pk)
-    context = {'products': products, 'cartItems': cartItems, 'categorys': categorys}
+    context = {'products': category.products.all(), 'cartItems': cartItems, 'categorys': categorys, 'category': category}
     return render(request, 'store/category.html', context)
 
 class ProductList(ListView):
@@ -199,6 +199,20 @@ class RegistrationView(FormMixin, TemplateView):
         else:
             messages.error(request, f'Something wrongs')
             return TemplateResponse(request, 'accounts/registration.html', context={'form': form})
+
+
+def profile(request):
+    data = cartData(request)
+
+    categorys = Category.objects.all()
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'categorys': categorys}
+    return render(request, 'accounts/profile.html', context)
+
+
 
 # #######################
 # # Function based views #

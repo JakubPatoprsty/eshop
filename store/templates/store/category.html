@@ -1,5 +1,8 @@
 {% extends 'store/main.html' %}
 {% load static %}
+{% block "menu" %}
+    <a class="navbar-brand">Category: {{ category.name }}</a>
+{% endblock  %}
 {% block content %}
 
 

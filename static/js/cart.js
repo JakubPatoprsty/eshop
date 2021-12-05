@@ -1,6 +1,7 @@
 var updateBtns = document.getElementsByClassName('update-cart')
 
 var cart = {}
+
 for (const cookie of document.cookie.split(";")) {
 	keyvalue = cookie.trim().split("=")
 	key = keyvalue [0]
@@ -10,7 +11,6 @@ for (const cookie of document.cookie.split(";")) {
 		break
 	}
 }
-
 
 for (let i = 0; i < updateBtns.length; i++) {
 	updateBtns[i].addEventListener('click', function(){
